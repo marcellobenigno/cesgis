@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GeoGIS Web{% endblock title %}
+
+{% block extras_assets %}
+    <link href="{% static 'libs/leaflet/leaflet.css' %}" rel="stylesheet">
+{% endblock extras_assets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div id="map"></div>
+
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+{% endblock content %}
+
+{% block extras_js %}
+    <script src="{% static 'libs/leaflet/leaflet.js' %}"></script>
+    <script>
+        {% include 'includes/mapa.js' %}
+    </script>
+{% endblock extras_js %}

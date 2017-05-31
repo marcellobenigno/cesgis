@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}GeoGIS Web - Pesquisar{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Pesquisar Infrações</h1>
+            </div>
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+
+    <div class="row search">
+
+        <form>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="proprietario">Nome do Proprietário:</label>
+                    <input type="proprietario" class="form-control" id="proprietario"
+                           placeholder="Ex.: João dos Santos">
+                </div>
+            </div><!-- /.col-md-6 -->
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="cpf" class="form-control" id="cpf" placeholder="Ex.: 12345678901">
+                </div>
+            </div><!-- /.col-md-6 -->
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="imovel_rural">Nome do Imóvel Rural:</label>
+                    <input type="imovel_rural" class="form-control" id="imovel_rural"
+                           placeholder="Ex.: Fazenda Alegria">
+                </div>
+            </div><!-- /.col-md-12 -->
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <p>
+                        <label for="cultura">Culturas Plantadas:</label>
+                    </p>
+                    <input type="checkbox"> Algodão
+                    <input type="checkbox"> Cana de Açúcar
+                    <input type="checkbox"> Milho
+                    <input type="checkbox"> Feijão
+                    <input type="checkbox"> Soja
+                </div>
+            </div><!-- /.col-md-12 -->
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-primary">Pesquisar</button>
+                </div>
+            </div><!-- /.col-md-12 -->
+        </form>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2 <span class="sr-only">2</span></a></li>
+                    <li><a href="#">3 <span class="sr-only">3</span></a></li>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Código da Vistoria</th>
+                    <th>Código da Fazenda</th>
+                    <th>Nome Proprietário</th>
+                    <th>Situação da Negociação</th>
+                    <th>Tipo de Infração</th>
+                    <th>Mais Informações</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vistoria in ces_vistorias %}
+                <tr>
+                    <td>{{ vistoria.codigo }}</td>
+                    <td>{{ vistoria.cod_fazend }}</td>
+                    <td>{{ vistoria.proprietar }}</td>
+                    <td>{{ vistoria.situacao }}</td>
+                    <td>{{ vistoria.tipo_infra }}</td>
+                    <td>
+                        <a href="{% url 'detail' vistoria.id %}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+{% endblock content %}

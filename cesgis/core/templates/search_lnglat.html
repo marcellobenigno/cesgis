@@ -1,0 +1,17 @@
+{% if infracao %}
+
+    <strong>Nome: </strong>
+    {{ infracao.codigo }}
+    <br>
+    <strong>Processo: </strong>
+    {{ infracao.cod_fazend }}
+    <br>
+    <strong>Tipo Infracao: </strong>
+    {{ infracao.tipo_infra }} <br>
+    <a href="{%  url 'detail' vistoria.id %}"> Mais Informações </a>
+
+{% else %}
+    Aumente o Zoom e <br>
+    Clique mais próximo da Inflação.
+{% endif %}
+

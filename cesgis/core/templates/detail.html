@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GeoGIS Web - Detalhes{% endblock title %}
+
+{% block extras_assets %}
+    <link href="{% static 'libs/leaflet/leaflet.css' %}" rel="stylesheet">
+{% endblock extras_assets %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2>Infração - {{ infracao.cod_fazend }} - {{ infracao.sign_cod }}</h2>
+        </div>
+
+        <div id="map-detail"></div>
+
+        <hr>
+
+        <h3>Mais informações:</h3>
+
+        <ul>
+            <li><strong>Código da Vistoria:</strong> {{ infracao.codigo }}</li>
+            <li><strong>Descrição do Código:</strong> {{ infracao.sign_cod }}</li>
+            <li><strong>Código da Fazenda:</strong> {{ infracao.cod_fazend }}</li>
+            <li><strong>Nome Proprietário:</strong> {{ infracao.proprietar }}</li>
+            <li><strong>Situação da Negociação:</strong> {{ infracao.situacao }}</li>
+            <li><strong>Tipo de Acesso:</strong> {{ infracao.acesso }}</li>
+            <li><strong>Nome do Infrator:</strong> {{ infracao.nome_infra }}</li>
+            <li><strong>Tipo de Infração:</strong> {{ infracao.tipo_infra }}</li>
+            <li><strong>Descrição da Infração:</strong> {{ infracao.desc_infra }}</li>
+            <li><strong>Data da Infração:</strong> {{ infracao.data_infra }}</li>
+            <li><strong>Hora da Infração:</strong> {{ infracao.hora_infra }}</li>
+            <li><strong>Houve Flagrante?:</strong> {{ infracao.flagrante }}</li>
+            <li><strong>Houve Notificação?:</strong> {{ infracao.notificado }}</li>
+            <li><strong>Observação:</strong> {{ infracao.observacao }}</li>
+            <li><strong>Coordenada E:</strong> {{ infracao.point_x }}</li>
+            <li><strong>Coordenada N:</strong> {{ infracao.point_y }}</li>
+        </ul>
+
+        <hr>
+
+        <a href="{% url 'search' %}" class="btn btn-primary btn-sm back" role="button">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" title="Voltar"></span>
+        </a>
+
+    </div><!-- /.col-md-12 -->
+{% endblock content %}
+
+{% block extras_js %}
+    <script src="{% static 'libs/leaflet/leaflet.js' %}"></script>
+    <script>
+        {% include 'includes/mapa.js' %}
+    </script>
+{% endblock extras_js %}
